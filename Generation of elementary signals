@@ -1,0 +1,119 @@
+#All Elementary Signals with Operations
+import numpy as np
+import matplotlib.pyplot as plt
+
+#cd = 0 --> continious
+#cd = 1 --> discrete
+#l = lower limit of time axis
+#u = upper limit of time axis
+#a = amplitude of signal
+#s = shifting factor point
+
+def unitstep(cd,l,u,a,s):
+    if cd==0:
+        t = np.arange(l,u,0.01)
+        ut = []
+        for i in t:
+            if i>=s:
+                ut.append(a)
+            else:
+                ut.append(0)
+        return ut
+    
+    else:
+        n = np.arange(l,u,1)
+        un = []
+        for i in n:
+            if i>=s:
+                un.append(a)
+            else:
+                un.append(0)
+        return un
+    
+def unitimpulse(cd,l,u,a,s):
+    if cd==0:
+        t = np.arange(l,u,1)
+        dt = []
+        for i in t:
+            if i==s:
+                dt.append(a)
+            else:
+                dt.append(0)
+        return dt
+    
+    else:
+        n = np.arange(l,u,1)
+        dn = []
+        for i in n:
+            if i==s:
+                dn.append(a)
+            else:
+                dn.append(0)
+        return dn
+    
+def unitramp_start(cd,l,u,s):
+    if cd==0:
+        t = np.arange(l,u,0.01)
+        rt = []
+        for i in t:
+            if i>=s:
+                rt.append(i-s)
+            else:
+                rt.append(0)
+        return rt
+    
+    else:
+        n = np.arange(l,u,1)
+        rn = []
+        for i in n:
+            if i>=s:
+                rn.append(i-s)
+            else:
+                rn.append(0)
+        return rn
+    
+def unitramp_continue(cd,l,u,s):
+    if cd==0:
+        t = np.arange(l,u,0.01)
+        rt = []
+        for i in t:
+            if i>=s:
+                rt.append(i)
+            else:
+                rt.append(0)
+        return rt
+    
+    else:
+        n = np.arange(l,u,1)
+        rn = []
+        for i in n:
+            if i>=s:
+                rn.append(i)
+            else:
+                rn.append(0)
+        return rn
+    
+def sinsignal(cd,l,u,a,f):
+    if cd==0:
+        t = np.arange(l,u,0.01)#0, 100, f=0.1
+        sint = []
+        sint = a*np.sin(2*np.pi*f*t)
+        return sint
+    
+    else:
+        n = np.arange(l,u,1)
+        sinn = []
+        sinn = a*np.sin(2*np.pi*f*n)
+        return sinn
+    
+def expsignal(cd,l,u,a,f):
+    if cd==0:
+        t = np.arange(l,u,0.01)
+        expt = []
+        expt = a*np.exp(2*np.pi*f*t)
+        return expt
+    else:
+        n = np.arange(l,u,1)
+        expn = []
+        expn = a*np.exp(2*np.pi*f*n)
+        return expn
