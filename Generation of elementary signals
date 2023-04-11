@@ -51,7 +51,7 @@ def unitimpulse(cd,l,u,a,s):
                 dn.append(0)
         return dn
     
-def unitramp_start(cd,l,u,s):
+def unitramp(cd,l,u,s):
     if cd==0:
         t = np.arange(l,u,0.01)
         rt = []
@@ -68,27 +68,6 @@ def unitramp_start(cd,l,u,s):
         for i in n:
             if i>=s:
                 rn.append(i-s)
-            else:
-                rn.append(0)
-        return rn
-    
-def unitramp_continue(cd,l,u,s):
-    if cd==0:
-        t = np.arange(l,u,0.01)
-        rt = []
-        for i in t:
-            if i>=s:
-                rt.append(i)
-            else:
-                rt.append(0)
-        return rt
-    
-    else:
-        n = np.arange(l,u,1)
-        rn = []
-        for i in n:
-            if i>=s:
-                rn.append(i)
             else:
                 rn.append(0)
         return rn
@@ -117,3 +96,4 @@ def expsignal(cd,l,u,a,f):
         expn = []
         expn = a*np.exp(2*np.pi*f*n)
         return expn
+    
