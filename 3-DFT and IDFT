@@ -1,0 +1,47 @@
+#Computing the DFT and IDFT of user defined signal
+import numpy as np
+import matplotlib.pyplot as plt
+
+def dft(x):
+    N = len(x)
+    X = [complex(0)]*N
+    for k in range (N):
+        for n in range (N):
+            X[k] += x[n]*(np.exp(-2j*np.pi*k*n/N))
+    for i in range(N):
+        X[i] = complex(round(X[i].real),round(X[i].imag))
+        if X[i].imag == 0:
+            X[i] = int(X[i].real)
+    return X
+
+def idft(X):
+    N = len(X)
+    x = [complex(0)]*N
+    for n in range (N):
+        for k in range (N):
+            x[n] += X[k]*(np.exp(2j*np.pi*k*n/N))
+    for i in range (N):
+        x[i] = x[i]/N
+        x[i] = complex(round(x[i].real),round(x[i].imag))
+        if x[i].imag == 0:
+            x[i] = int(x[i].real)
+    return x
+
+#One example
+N = int(input("Enter number of points: "))
+inp = [0]*N
+for i in range(N):
+    inp[i]=complex(input("Enter the value: "))
+
+out =  dft(inp)
+print("Output:\n",out)
+
+plt.stem(inp)
+plt.yticks(np.real(inp))
+plt.show()
+plt.stem(np.abs(out))
+plt.yticks(np.real(np.abs(out)))
+plt.show()
+plt.stem(np.angle(out))
+plt.yticks(np.real(np.angle(out)))
+plt.show()
